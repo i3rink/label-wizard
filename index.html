@@ -4,6 +4,15 @@
   =================================
   CHANGELOG
   ---------
+  v1.0.9  2025-06-29  Revised home screen icon: wizard hat (dark navy cone,
+                      brim, gold star) replaces paper feed. ANNICK wordmark
+                      added to icon. Browser tab favicon unchanged.
+
+  v1.0.8  2025-06-29  Added PWA/home screen support: apple-touch-icon (192×192
+                      blue tile with white printer icon), theme-color meta,
+                      apple-mobile-web-app meta tags. App now installs cleanly
+                      to iOS and Android home screens.
+
   v1.0.7  2025-06-29  Added changelog block. Moved DEL/REM/COLL checkboxes to
                       top of printed label (below divider, above Job ID).
                       No functional changes.
@@ -20,8 +29,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA / Add to Home Screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Label Printer">
+<meta name="theme-color" content="#5b82b4">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTkyIj4KICA8cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgcng9IjM2IiBmaWxsPSIjNWI4MmI0Ii8+CiAgPGVsbGlwc2UgY3g9Ijk2IiBjeT0iODUiIHJ4PSI1MiIgcnk9IjEwIiBmaWxsPSIjMWEyZTRhIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI5NiwxOCA1Niw4NSAxMzYsODUiIGZpbGw9IiMxYTJlNGEiLz4KICA8cG9seWdvbiBwb2ludHM9Ijk2LDMyIDk4LDM4IDEwNSwzOCA5OSw0MiAxMDEsNDggOTYsNDQgOTEsNDggOTMsNDIgODcsMzggOTQsMzgiIGZpbGw9IiNmMGMwNDAiIG9wYWNpdHk9IjAuOSIvPgogIDxyZWN0IHg9IjQ0IiB5PSIxMDQiIHdpZHRoPSIxMDQiIGhlaWdodD0iNTIiIHJ4PSI4IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC45MiIvPgogIDxyZWN0IHg9IjY0IiB5PSIxMzAiIHdpZHRoPSI2NCIgaGVpZ2h0PSIzOCIgcng9IjQiIGZpbGw9IiM1YjgyYjQiLz4KICA8cmVjdCB4PSI3MiIgeT0iMTQyIiB3aWR0aD0iNDgiIGhlaWdodD0iNSIgcng9IjIiIGZpbGw9IndoaXRlIiBvcGFjaXR5PSIwLjg1Ii8+CiAgPHJlY3QgeD0iNzIiIHk9IjE1NCIgd2lkdGg9IjMyIiBoZWlnaHQ9IjUiIHJ4PSIyIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC42Ii8+CiAgPGNpcmNsZSBjeD0iMTMwIiBjeT0iMTIyIiByPSI3IiBmaWxsPSIjNWI4MmI0Ii8+CiAgPHRleHQgeD0iOTYiIHk9IjE3OCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjMiIG9wYWNpdHk9IjAuOTUiPkFOTklDSzwvdGV4dD4KPC9zdmc+">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3QgeD0iNCIgeT0iMTEiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNCIgcng9IjIiIGZpbGw9IiM1YjgyYjQiLz4KICA8cmVjdCB4PSI5IiB5PSI1IiB3aWR0aD0iMTQiIGhlaWdodD0iOCIgcng9IjEiIGZpbGw9IiM3YWEzY2MiLz4KICA8cmVjdCB4PSI5IiB5PSIyMSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjYiIHJ4PSIxIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjkiLz4KICA8Y2lyY2xlIGN4PSIyNCIgY3k9IjE3IiByPSIxLjUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOCIvPgogIDxwYXRoIGQ9Ik0yMyAxNyBDMjMgMTcgMTkgMjIgMTkgMjQuNSBDMTkgMjYuNCAyMC44IDI4IDIzIDI4IEMyNS4yIDI4IDI3IDI2LjQgMjcgMjQuNSBDMjcgMjIgMjMgMTcgMjMgMTdaIiBmaWxsPSIjM2E5YmQ1IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMC41Ii8+Cjwvc3ZnPg==">
-<title>Annick Bathrooms — Label Printer v1.0.7</title>
+<title>Annick Bathrooms — Label Printer v1.0.9</title>
 <style>
   :root {
     --blue: #5b82b4;
