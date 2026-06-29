@@ -1,10 +1,27 @@
 <!DOCTYPE html>
+<!--
+  Annick Bathrooms — Label Printer
+  =================================
+  CHANGELOG
+  ---------
+  v1.0.7  2025-06-29  Added changelog block. Moved DEL/REM/COLL checkboxes to
+                      top of printed label (below divider, above Job ID).
+                      No functional changes.
+
+  v1.0.6  2025-06-29  Added DEL / Remedial / COLL delivery-type checkboxes to
+                      screen form (above Job ID field). Checkboxes render on
+                      printed label as filled/empty squares. Added per-label
+                      count to footer: "1 of N", "2 of N" etc.
+
+  v1.0.5  (baseline)  Job ID, Postcode, Door Number fields. Qty selector.
+                      4×6 in label output for Vretti 420B via USB/Edge.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3QgeD0iNCIgeT0iMTEiIHdpZHRoPSIyNCIgaGVpZ2h0PSIxNCIgcng9IjIiIGZpbGw9IiM1YjgyYjQiLz4KICA8cmVjdCB4PSI5IiB5PSI1IiB3aWR0aD0iMTQiIGhlaWdodD0iOCIgcng9IjEiIGZpbGw9IiM3YWEzY2MiLz4KICA8cmVjdCB4PSI5IiB5PSIyMSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjYiIHJ4PSIxIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjkiLz4KICA8Y2lyY2xlIGN4PSIyNCIgY3k9IjE3IiByPSIxLjUiIGZpbGw9IiNmZmYiIG9wYWNpdHk9IjAuOCIvPgogIDxwYXRoIGQ9Ik0yMyAxNyBDMjMgMTcgMTkgMjIgMTkgMjQuNSBDMTkgMjYuNCAyMC44IDI4IDIzIDI4IEMyNS4yIDI4IDI3IDI2LjQgMjcgMjQuNSBDMjcgMjIgMjMgMTcgMjMgMTdaIiBmaWxsPSIjM2E5YmQ1IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMC41Ii8+Cjwvc3ZnPg==">
-<title>Annick Bathrooms — Label Printer v1.0.6</title>
+<title>Annick Bathrooms — Label Printer v1.0.7</title>
 <style>
   :root {
     --blue: #5b82b4;
