@@ -73,7 +73,7 @@
     .label-value { font-family: Arial, sans-serif; font-size: 30pt; font-weight: 900; color: #1a1a1a; line-height: 1; display: block; }
     .label-value.medium { font-size: 30pt; }
     .label-footer { font-family: Arial, sans-serif; font-size: 6pt; color: #bbb; text-align: center; }
-    .label-delivery { width: 100%; display: flex; justify-content: space-between; margin-top: 3mm; border-top: 0.4mm solid #c0cdd8; padding-top: 2mm; }
+    .label-delivery { width: 100%; display: flex; justify-content: space-between; margin-bottom: 3mm; border-bottom: 0.4mm solid #c0cdd8; padding-bottom: 2mm; }
     .label-delivery-item { display: flex; align-items: center; font-family: Arial, sans-serif; font-size: 9pt; font-weight: 700; color: #1a1a1a; }
     .label-checkbox { display: inline-block; width: 5mm; height: 5mm; border: 0.5mm solid #1a1a1a; margin-right: 1.5mm; position: relative; }
     .label-checkbox.checked::after { content: ""; position: absolute; top: 0.3mm; left: 0.3mm; width: 3.5mm; height: 3.5mm; background: #1a1a1a; }
@@ -122,12 +122,17 @@
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  function buildLabel(jobId, postcode, door, chkDel, chkRem, chkColl) {
+  function buildLabel(jobId, postcode, door, chkDel, chkRem, chkColl, index, total) {
     var div = document.createElement("div");
     div.className = "label";
     div.innerHTML =
       "<img class='label-logo' src='" + LOGO + "' alt='Annick Bathrooms'>" +
       "<hr class='label-divider'>" +
+      "<div class='label-delivery'>" +
+        "<div class='label-delivery-item'><span class='label-checkbox" + (chkDel ? " checked" : "") + "'></span>DEL</div>" +
+        "<div class='label-delivery-item'><span class='label-checkbox" + (chkRem ? " checked" : "") + "'></span>REM</div>" +
+        "<div class='label-delivery-item'><span class='label-checkbox" + (chkColl ? " checked" : "") + "'></span>COLL</div>" +
+      "</div>" +
       "<div class='label-body'>" +
         "<div class='label-row'>" +
           "<span class='label-caption'>Job ID</span>" +
@@ -142,12 +147,7 @@
           "<span class='label-value medium'>" + esc(door) + "</span>" +
         "</div>" +
       "</div>" +
-      "<div class='label-delivery'>" +
-        "<div class='label-delivery-item'><span class='label-checkbox" + (chkDel ? " checked" : "") + "'></span>DEL</div>" +
-        "<div class='label-delivery-item'><span class='label-checkbox" + (chkRem ? " checked" : "") + "'></span>REM</div>" +
-        "<div class='label-delivery-item'><span class='label-checkbox" + (chkColl ? " checked" : "") + "'></span>COLL</div>" +
-      "</div>" +
-      "<div class='label-footer'>annick-bathrooms.co.uk</div>";
+      "<div class='label-footer'>annick-bathrooms.co.uk &nbsp;&bull;&nbsp; " + index + " of " + total + "</div>";
     return div;
   }
 
@@ -168,7 +168,7 @@
     var sheet = document.getElementById("labelSheet");
     sheet.innerHTML = "";
     for (var i = 0; i < qty; i++) {
-      sheet.appendChild(buildLabel(jobId, postcode, door, chkDel, chkRem, chkColl));
+      sheet.appendChild(buildLabel(jobId, postcode, door, chkDel, chkRem, chkColl, i + 1, qty));
     }
     sheet.style.display = "block";
     sheet.getBoundingClientRect();
